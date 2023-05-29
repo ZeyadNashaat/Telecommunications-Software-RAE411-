@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Message Board (1) Home Page</title>
+    
+</head>
+<body>
+    <h1>Submit Message form</h1>
+    <!-- Form to submit a message -->
+    <form action="/message/" method="post">
+        {% csrf_token %}
+        <!-- Sender input field -->
+        Sender <input type="text" name="userA" /> <br>
+        <!-- Receiver input field -->
+        Receiver <input type="text" name="userB" /> <br>
+        <!-- Message input field -->
+        Message <input type="text" name="msg" /> <br>
+        <!-- Submit button -->
+        <input type="submit" value="Message submission"/>
+    </form>
+    
+    <h1>Get Messages form</h1>
+    <!-- Form to get messages -->
+    <form action="/message/" method="get">
+        <!-- Receiver input field -->
+        Receiver <input type="text" name="userC" /> <br>
+        <!-- Get messages button -->
+        <input type="submit" value="Get a message"/>
+    </form>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <!-- Table header columns -->
+                <th>Message Time</th>
+                <th>Message Source</th>
+                <th>Message Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through data and display messages -->
+            {% for item in data %}
+            <tr>
+                <!-- Display message time -->
+                <td>{{ item.time }}</td>
+                <!-- Display message source -->
+                <td>{{ item.userA }}</td>
+                <!-- Display message content -->
+                <td>{{ item.msg }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+
